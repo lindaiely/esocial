@@ -64,4 +64,11 @@ Route::match(['post'], '/esocial/evt-comProd', [EvtComProdController::class, 'ev
 
 // Rotas de consulta e envio de lotes
 
-Route::match(['post'], '/esocial/consulta-lote', [ConsultaLoteController::class, 'consultaLote']);
+Route::match(['post'], '/esocial/consulta-lote', [ConsultaLote::class, 'consultaLote']);
+Route::match(['post'], '/esocial/consulta-eventosEmp', [ConsultarEventosEmpregador::class, 'consultaEventosEmp']);
+Route::match(['post'], '/esocial/consulta-eventosTab', [ConsultarEventosTabela::class, 'consultaEventosTab']);
+Route::match(['post'], '/esocial/consulta-eventosTrab', [ConsultarEventosTrabalhador::class, 'consultaEventosTrab']);
+Route::match(['post'], '/esocial/download-porId', [DownloadEventosPorId::class, 'downloadPorId']);
+Route::match(['post'], '/esocial/download-porRecibo', [DownloadEventosPorNrRecibo::class, 'downloadPorRecibo']);
+Route::match(['post'], '/esocial/envia', [Envia::class, 'envia']);
+Route::match(['post'], '/esocial/envia-lote', [EnviaLoteXml::class, 'enviaLote']);
