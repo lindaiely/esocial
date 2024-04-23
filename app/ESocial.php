@@ -10,60 +10,6 @@ use NFePHP\eSocial\Tools;
 use NFePHP\eSocial\Factories;
 use NFePHP\eSocial\Common\Soap\SoapCurl;
 
-/*
-
-### EVENTOS versão S 1.2
-
--- EVENTOS INICIAIS - [1]
-- S-1000 - Informações do Empregador/Contribuinte/Órgão Público
-- S-1005 - Tabela de Estabelecimentos, Obras ou Unidades de Órgãos Públicos
-- S-1010 - Tabela de Rubricas
-- S-1020 - Tabela de Lotações Tributárias
-- S-1070 - Tabela de Processos Administrativos/Judiciais
-- S-2200 - Cadastramento Inicial do Vínculo e Admissão/Ingresso de Trabalhador
-
-
--- EVENTOS NAO PERIODICOS - [2]
-
-- S-2190 - Registro Preliminar de Trabalhador
-- S-2205 - Alteração de Dados Cadastrais do Trabalhador
-- S-2206 - Alteração de Contrato de Trabalho/Relação Estatutária
-- S-2210 - Comunicação de Acidente de Trabalho
-- S-2220 - Monitoramento da Saúde do Trabalhador
-- S-2230 - Afastamento Temporário
-- S-2231 - Cessão/Exercício em Outro Órgão
-- S-2240 - Condições Ambientais do Trabalho - Agentes Nocivos
-- S-2298 - Reintegração/Outros Provimentos
-- S-2299 - Desligamento
-- S-2300 - Trabalhador Sem Vínculo de Emprego/Estatutário - Início
-- S-2306 - Trabalhador Sem Vínculo de Emprego/Estatutário - Alteração Contratual
-- S-2399 - Trabalhador Sem Vínculo de Emprego/Estatutário - Término
-- S-2400 - Cadastro de Beneficiário - Entes Públicos - Início
-- S-2405 - Cadastro de Beneficiário - Entes Públicos - Alteração
-- S-2410 - Cadastro de Benefício - Entes Públicos - Início
-- S-2416 - Cadastro de Benefício - Entes Públicos - Alteração
-- S-2418 - Reativação de Benefício - Entes Públicos
-- S-2420 - Cadastro de Benefício - Entes Públicos - Término
-- S-2500 - Processo Trabalhista
-- S-2501 - Informações de Tributos Decorrentes de Processo Trabalhista
-- S-3000 - Exclusão de Eventos
-- S-3500 - Exclusão de Eventos - Processo Trabalhista
-
-
--- EVENTOS PERIODICOS - [3]
-
-- S-1200 - Remuneração de Trabalhador vinculado ao Regime Geral de Previd. Social
-- S-1202 - Remuneração de Servidor vinculado ao Regime Próprio de Previd. Social
-- S-1207 - Benefícios - Entes Públicos
-- S-1210 - Pagamentos de Rendimentos do Trabalho
-- S-1260 - Comercialização da Produção Rural Pessoa Física
-- S-1270 - Contratação de Trabalhadores Avulsos Não Portuários
-- S-1280 - Informações Complementares aos Eventos Periódicos
-- S-1298 - Reabertura dos Eventos Periódicos
-- S-1299 - Fechamento dos Eventos Periódicos
-
-*/
-
 
 class Esocial{
 	var $config;
@@ -78,7 +24,7 @@ class Esocial{
 	var $loteEventos = array();
 	var $qtdeLoteAtual = 0; //controle de eventos em um lote = max 50
 	var $indiceLote = 0;
-	var $senhaCertificado = '12345678';
+	var $senhaCertificado = '';
 	var $arquivoBinarioCertficado = '';
 	var $tpInscCertificado = '';
 	var $nrInscCertificado = '';
@@ -697,7 +643,7 @@ class Esocial{
 	    }
 	}
 
-    private function addEventosLotes($objEvento, $tblEvento){
+    public function addEventosLotes($objEvento, $tblEvento){
         if ($this->qtdeLoteAtual % 50 == 0) {
             $this->indiceLote++;
         }
@@ -712,7 +658,7 @@ class Esocial{
     }
 
 
-    private function enviarEventos($eventos){
+    public function enviarEventos($eventos){
         if (count($eventos) > 0) {
             try {
                 // Utilize esta linha para enviar os eventos
@@ -740,7 +686,7 @@ class Esocial{
         }
     }
 
-	private function enviarEventosXml($eventos){
+	public function enviarEventosXml($eventos){
         if (count($eventos) > 0) {
             try {
                 // Utilize esta linha para enviar os eventos
@@ -834,5 +780,5 @@ class Esocial{
 		}
 	}
 
-
+	
 }
